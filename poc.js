@@ -11,7 +11,8 @@ vector.load(POC_PIXEL);
 
 function pocVisitorId() {
   try {
-    return localStorage.getItem('vector_visitor_id') || localStorage.getItem('visitor_id') || null;
+    var prefix = 'vector_pixel_' + POC_PIXEL + '_';
+    return localStorage.getItem(prefix + 'visitor_id') || localStorage.getItem(prefix + 'visitor_uuid') || null;
   } catch (e) {
     return null;
   }
