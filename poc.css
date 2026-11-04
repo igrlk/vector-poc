@@ -1,0 +1,5 @@
+body { font: 16px/1.5 system-ui, sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; color: #222; }
+.note { background: #fff6d6; padding: .5rem .75rem; border-radius: 6px; font-size: .9rem; }
+nav { display: flex; gap: 1rem; margin: 1rem 0 2rem; }
+button { margin: 0 .5rem .5rem 0; padding: .4rem .8rem; }
+input { padding: .4rem; margin-right: .5rem; min-width: 16rem; }

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>App - Vector POC</title>
+<link rel="stylesheet" href="/vector-poc/poc.css">
+<script src="/vector-poc/poc.js"></script>
+</head>
+<body>
+<main>
+<h1>App</h1>
+<p>These tabs change the address without loading a new page, like a React app.</p>
+<p><button data-route="dashboard" data-mode="silent">Dashboard</button><button data-route="settings" data-mode="silent">Settings</button><button data-route="reports" data-mode="manual">Reports</button><button data-route="billing" data-mode="manual">Billing</button><button data-route="team" data-mode="page-call">Team</button></p>
+<p id="route">You are on: App home</p>
+<p><button data-poc-click="app-button">Test button</button> <a href="#app-link" data-poc-click="app-link">Test link</a></p>
+</main>
+</body>
+</html>
