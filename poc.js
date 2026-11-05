@@ -18,9 +18,17 @@ function pocVisitorId() {
   }
 }
 
+function pocTester() {
+  try {
+    return localStorage.getItem('poc_tester') || null;
+  } catch (e) {
+    return null;
+  }
+}
+
 // Our own log of what happened and when, to line up against Vector's webhooks. Never includes the email.
 function pocLog(event, extra) {
-  var entry = Object.assign({ event: event, at: new Date().toISOString(), url: location.href, title: document.title, partnerId: window.vector.partnerId, visitorId: pocVisitorId() }, extra || {});
+  var entry = Object.assign({ event: event, tester: pocTester(), at: new Date().toISOString(), url: location.href, title: document.title, partnerId: window.vector.partnerId, visitorId: pocVisitorId() }, extra || {});
   navigator.sendBeacon(POC_RECORDER, JSON.stringify(entry));
 }
 
@@ -47,8 +55,16 @@ document.addEventListener('DOMContentLoaded', function () {
   if (POC_IN_WS2) links.splice(1, 1);
   else links.push(['App', '/app/']);
   var header = document.createElement('header');
-  header.innerHTML = '<p class="note">Test site for a Clarify experiment. It runs the Vector tracking pixel, which identifies visitors and reads email addresses from forms. Workspace: <b>' + window.vector.partnerId + '</b></p><nav>' + links.map(function (l) { return '<a href="' + root + l[1] + '">' + l[0] + '</a>'; }).join('') + '</nav>';
+  header.innerHTML = '<p class="note">Test site for a Clarify experiment. It runs the Vector tracking pixel, which identifies visitors and reads email addresses from forms. Workspace: <b>' + window.vector.partnerId + '</b></p><p><label>Your first name: <input id="poc-tester" placeholder="Type it here first"></label></p><nav>' + links.map(function (l) { return '<a href="' + root + l[1] + '">' + l[0] + '</a>'; }).join('') + '</nav>';
   document.body.prepend(header);
+  var testerInput = document.getElementById('poc-tester');
+  testerInput.value = pocTester() || '';
+  testerInput.addEventListener('input', function () {
+    localStorage.setItem('poc_tester', testerInput.value.trim());
+  });
+  testerInput.addEventListener('change', function () {
+    pocLog('tester_named');
+  });
   pocLog('page_load', { referrer: document.referrer });
 
   document.body.addEventListener('click', function (e) {
