@@ -3,7 +3,7 @@
 
 var POC_BASE = '/vector-poc';
 var POC_PIXEL = '228a779f-a23c-4c3b-8030-d355b41eba8a';
-var POC_RECORDER = 'https://complimentary-offering-mood-marketplace.trycloudflare.com/truth';
+var POC_RECORDER = 'https://conservation-gras-leasing-quite.trycloudflare.com/truth';
 var POC_IN_WS2 = location.pathname.indexOf(POC_BASE + '/ws2') === 0;
 
 window.vector.partnerId = POC_IN_WS2 ? 'poc-ws-2' : 'poc-ws-1';
